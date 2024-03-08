@@ -1,0 +1,30 @@
+body {
+    display: grid;
+    grid-template-columns: 285px 800px; /* make it responsive* - use fractional*/
+    grid-template-rows: 60px 1fr;
+    margin: 0;
+    height: 100vh;
+    width: calc(285px + 800px) /* look at grid-template-column to change */
+}
+
+header {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+}
+
+.side-bar {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+/*border style*/
+body, header, .side-bar {
+    border-style: solid;
+}
