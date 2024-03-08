@@ -1,10 +1,10 @@
 body {
     display: grid;
-    grid-template-columns: 285px 800px; /* make it responsive* - use fractional*/
+    grid-template-columns: 325px 1fr; /* make it responsive* - use fractional*/
     grid-template-rows: 60px 1fr;
     margin: 0;
     height: 100vh;
-    width: calc(285px + 800px) /* look at grid-template-column to change */
+    width: calc(1440px) /* look at grid-template-column to change */
 }
 
 header {
@@ -25,6 +25,6 @@ header {
 }
 
 /*border style*/
-body, header, .side-bar {
+body, header, .side-bar, .project-container {
     border-style: solid;
 }

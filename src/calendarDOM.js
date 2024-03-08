@@ -9,7 +9,7 @@ function today(tasks){
 
 function week(tasks){
     tasks.forEach(task => {
-        if (isThisWeek(task.dueDate, { weekStartsOn: 1 })) taskDisplay(task); // weekStartsOn: 1 means monday
+        if (isThisWeek(task.dueDate, { weekStartsOn: 1 })) taskDisplay(task); // weekStartsOn: 1 means week starts on monday
      });
 }
 
