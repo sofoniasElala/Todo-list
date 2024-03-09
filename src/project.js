@@ -24,4 +24,11 @@ export default class Project {
     deleteTask(index){
         this.#tasks.splice(index, 1);
     }
+
+    toJSON(){
+        return {
+            name: this.#name,
+            tasks: this.#tasks
+        }
+    }
 }

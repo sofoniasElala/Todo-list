@@ -72,4 +72,17 @@ export default class Task {
     get complete(){
         return this.#complete;
     }
+
+    toJSON(){
+       return  {
+            title: this.#title,
+            description: this.#description,
+            notes: this.#notes,
+            dueDate : this.#dueDate,
+            priority: this.#priority,
+            project: this.#project,
+            complete: this.#complete
+
+        }
+    }
 }
