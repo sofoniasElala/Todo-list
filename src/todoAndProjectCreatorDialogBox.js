@@ -1,4 +1,5 @@
 //REFACTOR!!!
+import {format} from 'date-fns';
 
 function todoCreator(){
     const  main = document.querySelector('.main');
@@ -14,9 +15,15 @@ function todoCreator(){
     const description = document.createElement('input');
     description.setAttribute('placeholder', 'Description');
 
+    const date = document.createElement('input');
+    date.setAttribute('type', 'date');
+    date.classList.add('dueDate');
+    date.setAttribute('value', format(Date.now(), 'yyyy-MM-dd'));
+    date.setAttribute('min', format(Date.now(), 'yyyy-MM-dd'));
+
     const add = document.createElement('button');
     add.classList.add('task-dialog-add');
-    add.textContent = 'Add';
+    add.textContent = 'Add task';
     add.setAttribute('type', 'submit');
     add.addEventListener('click', ()=> {
         //handle task creation
@@ -32,8 +39,9 @@ function todoCreator(){
 
     form.appendChild(name);
     form.appendChild(description);
-    form.appendChild(add);
+    form.appendChild(date);
     form.appendChild(cancel);
+    form.appendChild(add);
     dialog.appendChild(form);
     main.appendChild(dialog);
 
@@ -61,7 +69,7 @@ function projectCreator(){
 
     const add = document.createElement('button');
     add.classList.add('project-dialog-add');
-    add.textContent = 'Add';
+    add.textContent = 'Add project';
     add.setAttribute('type', 'submit');
     add.addEventListener('click', ()=> {
         //handle project creation
@@ -78,8 +86,8 @@ function projectCreator(){
     form.appendChild(header);
     form.appendChild(nameLabel);
     form.appendChild(name);
-    form.appendChild(add);
     form.appendChild(cancel);
+    form.appendChild(add);
     dialog.appendChild(form);
     main.appendChild(dialog);
 
