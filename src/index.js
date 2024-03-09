@@ -33,11 +33,13 @@ class App {
         const testProjectTask2 = new Task('bench press', '150 x 4', '', format(Date.now(), "MM/dd/yyyy"),'', testProject.name, false);
         testProject.addTask(testProjectTask2);
         allTasks.push(testProjectTask2);
-        /**              */
+        /*---------------------*/
 
+        home(allTasks); //landing page loaded with the test tasks
 
         this.homeButton.addEventListener('click', ()=> {
-            home();
+            this.main.innerHTML = '';
+            home(allTasks);
         })
         this.todayButton.addEventListener('click', ()=> {
             this.main.innerHTML = '';
