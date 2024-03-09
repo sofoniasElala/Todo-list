@@ -1,5 +1,6 @@
 //REFACTOR!!!
 import {format} from 'date-fns';
+import { updateStorage, getValueFromStorage } from './storageCRUD.js';
 
 function todoCreator(){
     const  main = document.querySelector('.main');
@@ -26,7 +27,9 @@ function todoCreator(){
     add.textContent = 'Add task';
     add.setAttribute('type', 'submit');
     add.addEventListener('click', ()=> {
+        document.querySelector('.create').style.visibility = 'hidden';
         //handle task creation
+
     })
 
     const cancel = document.createElement('button');
@@ -72,6 +75,7 @@ function projectCreator(){
     add.textContent = 'Add project';
     add.setAttribute('type', 'submit');
     add.addEventListener('click', ()=> {
+        document.querySelector('.create').style.visibility = 'hidden';
         //handle project creation
     })
 

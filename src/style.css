@@ -1,4 +1,5 @@
 body {
+    position: relative;
     display: grid;
     grid-template-columns: 325px 1fr; /* make it responsive* - use fractional*/
     grid-template-rows: 60px 1fr;
@@ -25,7 +26,7 @@ header {
     grid-row: 2 / 3;
 }
 
-.home-add-button {
+.add-button {
     position: absolute;
     bottom: 80px;
     right: 80px;
@@ -33,7 +34,7 @@ header {
     padding: 15px;
 }
 
-.home-create {
+.create {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -45,6 +46,6 @@ header {
 }
 
 /*border style*/
-body, header, .side-bar, .project-container, .home-create {
+body, header, .side-bar, .project-container, .create {
     border-style: solid;
 }
