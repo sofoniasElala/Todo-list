@@ -21,7 +21,7 @@ function projects(projects){
 function projectTasks(project){
     const tasks = project.tasks;
     tasks.forEach(task => {
-        taskDisplay(task);
+        taskDisplay(task, tasks);
     });
 }
 

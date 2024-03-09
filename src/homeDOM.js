@@ -34,7 +34,7 @@ export default function home (allTasks = []){
     main.appendChild(createTaskOrProject);
 
     allTasks.forEach(task => {
-        taskDisplay(task);
+        taskDisplay(task, allTasks);
     })
 
 
