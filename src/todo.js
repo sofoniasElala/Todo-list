@@ -1,5 +1,5 @@
 export default class Task {
-    #title;
+    #name;
     #description;
     #notes;
     #dueDate;
@@ -7,8 +7,8 @@ export default class Task {
     #project;
     #complete;
     
-    constructor(title, description, notes, dueDate, priority, project, complete = false){
-        this.#title = title;
+    constructor(name, description, notes, dueDate, priority, project, complete = false){
+        this.#name = name;
         this.#description = description;
         this.#notes = notes;
         this.#dueDate = dueDate;
@@ -17,12 +17,12 @@ export default class Task {
         this.#complete = complete;
     }
 
-    set title(title){
-        this.#title = title;
+    set name(name){
+        this.#name = name;
     }
 
-    get title(){
-        return this.#title;
+    get name(){
+        return this.#name;
     }
 
     set description(description){
@@ -75,7 +75,7 @@ export default class Task {
 
     toJSON(){
        return  {
-            title: this.#title,
+            name: this.#name,
             description: this.#description,
             notes: this.#notes,
             dueDate : this.#dueDate,
