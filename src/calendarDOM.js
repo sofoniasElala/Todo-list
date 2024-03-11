@@ -1,15 +1,19 @@
-import { isToday, isThisWeek } from "date-fns";
+import { isToday, isThisWeek, parseISO } from "date-fns";
 import taskDisplay from "./taskDOM.js";
 
 function today(tasks){
+    const main = document.querySelector('.main');
+    main.innerHTML = '';
     tasks.forEach(task => {
-        if (isToday(task.dueDate)) taskDisplay(task, tasks);
+        if (isToday(parseISO(task.dueDate))) taskDisplay(task, tasks);
     });
 }
 
 function week(tasks){
+    const main = document.querySelector('.main');
+    main.innerHTML = '';
     tasks.forEach(task => {
-        if (isThisWeek(task.dueDate, { weekStartsOn: 1 })) taskDisplay(task, tasks); // weekStartsOn: 1 means week starts on monday
+        if (isThisWeek(parseISO(task.dueDate), { weekStartsOn: 1 })) taskDisplay(task, tasks); // weekStartsOn: 1 means week starts on monday
      });
 }
 
