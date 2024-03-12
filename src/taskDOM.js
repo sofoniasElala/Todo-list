@@ -5,18 +5,20 @@ export default function taskDisplay(task, tasks){
     const taskContainer = document.createElement('div');
     const index = tasks.indexOf(task);
         taskContainer.classList.add('task-container');
+        taskContainer.classList.add(`${task.name.replace(/\s/g, "")}-task-container`);
         const name = document.createElement('p');
         name.textContent = task.name;
         const description = document.createElement('p');
         description.textContent = task.description;
-        const edit = document.createElement('button');
-        edit.textContent = 'Edit';
-        edit.addEventListener('click', ()=> {
+        /*const edit = document.createElement('button');
+        edit.textContent = 'Edit'; */
+        taskContainer.addEventListener('click', ()=> {
             todoCreator(task);
         })
         const deleteTask = document.createElement('button');
         deleteTask.textContent = 'deleteTask';
-        deleteTask.addEventListener('click', ()=> {
+        deleteTask.addEventListener('click', (e)=> {
+            e.stopPropagation();
            deleteTaskFromStorage(task, tasks);
            console.log('clicked')
         })
@@ -29,7 +31,7 @@ export default function taskDisplay(task, tasks){
 
         taskContainer.appendChild(name);
         taskContainer.appendChild(description);
-        taskContainer.appendChild(edit);
+        //taskContainer.appendChild(edit);
         taskContainer.appendChild(deleteTask);
         taskContainer.appendChild(labelForBox);
         taskContainer.appendChild(completedBox);

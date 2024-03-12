@@ -10,19 +10,20 @@ function projects(projects){
         projectContainer.classList.add(`${project.name.replace(/\s/g, "")}`);
         const name = document.createElement('p');
         name.textContent = project.name;
-        const editProject = document.createElement('button');
-        editProject.textContent = 'Edit';
-        editProject.addEventListener('click', ()=> {
+        /*const editProject = document.createElement('button');
+        editProject.textContent = 'Edit';*/
+        projectContainer.addEventListener('click', ()=> {
             projectCreator(project);
         })
         const deleteProjectButton = document.createElement('button');
         deleteProjectButton.textContent = 'Delete';
-        deleteProjectButton.addEventListener('click', ()=> {
+        deleteProjectButton.addEventListener('click', (e)=> {
+            e.stopPropagation();
             deleteProject(project);
         })
 
         projectContainer.appendChild(name);
-        projectContainer.appendChild(editProject);
+       // projectContainer.appendChild(editProject);
         projectContainer.appendChild(deleteProjectButton);
         main.appendChild(projectContainer);
     });

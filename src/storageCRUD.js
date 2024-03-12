@@ -25,7 +25,7 @@ function getProjectFromStorage(name){
 
 function deleteProject(projectToDelete){
     const projectsArray = getValueFromStorage('projects');
-    const onDOM = Array.from(document.getElementsByClassName(`${projectToDelete.name}`));
+    const onDOM = Array.from(document.getElementsByClassName(`${projectToDelete.name.replace(/\s/g, "")}`));
     projectsArray.forEach((project, index) => {
         if(projectToDelete.name === project.name){
             projectsArray.splice(index, 1);
@@ -40,6 +40,7 @@ function deleteProject(projectToDelete){
 function deleteTask(taskToDelete, allTasks){
     const project = getProjectFromStorage(taskToDelete.project);
     const allProjects = getValueFromStorage('projects');
+    const onDOM = Array.from(document.getElementsByClassName(`${taskToDelete.name.replace(/\s/g, "")}-task-container`));
     project.tasks.forEach((task, index) => {
         if(task.name === taskToDelete.name){
             project.tasks.splice(index, 1);
@@ -51,6 +52,9 @@ function deleteTask(taskToDelete, allTasks){
         if(task.name === taskToDelete.name){
             allTasks.splice(index, 1);
             updateStorage('all-tasks', allTasks);
+            onDOM.forEach(element => {
+                element.remove();
+            })
             return;
         }
     })
