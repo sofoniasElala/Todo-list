@@ -33,15 +33,13 @@ function todoCreator(editTask = {}){
 
     const dropDown = document.createElement('select');
     dropDown.setAttribute('id', 'drop-down');
-    /*const defaultOption = document.createElement('option');
-    defaultOption.textContent = 'default project';
-    defaultOption.setAttribute('selected', "");
-    defaultOption.setAttribute('value', 'default project');
-    dropDown.appendChild(defaultOption); */
     createProjectsDropdown(dropDown, editTask.name ? true: false, editTask.project);
 
+
+    const bottomDiv = document.createElement('div');
+    bottomDiv.classList.add('bottom-div');
     const add = document.createElement('button');
-    add.classList.add('task-dialog-add');
+    add.classList.add('dialog-add');
     add.textContent = editTask.name ? 'Save task' : 'Add task';
     add.setAttribute('type', 'submit');
     add.addEventListener('click', (e)=> {
@@ -62,7 +60,7 @@ function todoCreator(editTask = {}){
     })
 
     const cancel = document.createElement('button');
-    cancel.classList.add('task-dialog-cancel');
+    cancel.classList.add('dialog-cancel');
     cancel.textContent = 'Cancel';
     cancel.setAttribute('type', 'button');
     cancel.addEventListener('click', (e)=>{
@@ -74,8 +72,9 @@ function todoCreator(editTask = {}){
     form.appendChild(description);
     form.appendChild(date);
     form.appendChild(dropDown);
-    form.appendChild(cancel);
-    form.appendChild(add);
+    bottomDiv.appendChild(cancel);
+    bottomDiv.appendChild(add);
+    form.appendChild(bottomDiv);
     dialog.appendChild(form);
     main.appendChild(dialog);
 
@@ -104,8 +103,10 @@ function projectCreator(editProject = {}){
     name.setAttribute('id', 'project-name');
     name.setAttribute('autocapitalize', 'on');
 
+    const bottomDiv = document.createElement('div');
+    bottomDiv.classList.add('bottom-div');
     const add = document.createElement('button');
-    add.classList.add('project-dialog-add');
+    add.classList.add('dialog-add');
     add.textContent = editProject.name ? 'Save project' : 'Add project';
     add.setAttribute('type', 'submit');
     add.addEventListener('click', (e)=> {
@@ -118,7 +119,7 @@ function projectCreator(editProject = {}){
     })
 
     const cancel = document.createElement('button');
-    cancel.classList.add('project-dialog-cancel');
+    cancel.classList.add('dialog-cancel');
     cancel.textContent = 'Cancel';
     cancel.setAttribute('type', 'button');
     cancel.addEventListener('click', (e)=>{
@@ -129,8 +130,9 @@ function projectCreator(editProject = {}){
     form.appendChild(header);
     form.appendChild(nameLabel);
     form.appendChild(name);
-    form.appendChild(cancel);
-    form.appendChild(add);
+    bottomDiv.appendChild(cancel);
+    bottomDiv.appendChild(add);
+    form.appendChild(bottomDiv);
     dialog.appendChild(form);
     main.appendChild(dialog);
 

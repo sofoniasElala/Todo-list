@@ -1,9 +1,15 @@
+@font-face {
+    font-family: teko;
+    src: url(./Teko/Teko-VariableFont_wght.ttf);
+}
 body {
     position: relative;
     display: grid;
     grid-template-columns: 325px 1fr; /* make it responsive* - use fractional*/
     grid-template-rows: 60px 1fr;
     margin: 0;
+    font-size: 32px;
+    font-family: teko;
     height: 100vh;
     width: calc(1440px) /* look at grid-template-column to change */
 }
@@ -14,38 +20,148 @@ header {
 }
 
 .side-bar {
+    background-color: #463f3a;
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     display: flex;
     flex-direction: column;
+    gap: 5px;
+    padding: 10px 5px;
+}
+
+.side-bar button {
+    text-align: start;
+
+}
+
+.create button, .side-bar button, .dialog-add, .dialog-cancel{
+    font-size: 1rem;
+    color: #FFFFFF;
+    border-style: none;
+    background-color: inherit;
+    font-family: inherit;
+    font-size: 22px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dialog-add, .dialog-cancel {
+    color: black;
 }
 
 .main {
     position: relative;
     grid-column: 2 / 3;
     grid-row: 2 / 3;
+    background-color: #f2e9e4;
+}
+
+.min-tab {
+    margin-left: 16px;
+}
+
+.min-tab img{
+    height: 17px;
 }
 
 .add-button {
+    background: no-repeat url(./plus-solid.svg);
+    background-size: 35px;
     position: absolute;
     bottom: 80px;
     right: 80px;
     border-radius: 50%;
-    padding: 15px;
+    background-position: center;
+    height: 55px;
+    width: 55px;
+    border-style:none;
+    background-color: #a7998e;
+    cursor: pointer;
 }
+
+.add-button:hover {
+    background-color: #b2a69d;
+}
+
+.side-bar button:hover {
+    background-color: #86817d;
+}
+
+hr {
+    margin: 0;
+    border-style: solid;
+    color: #a7998e;
+      
+}
+
+dialog {
+    background-color: #FFD43B;
+    border-radius: 10px;
+    border-style: none;
+    width: 400px;
+    padding: 16px;
+}
+
+form p {
+    margin: 0 0 15px;
+}
+
+.bottom-div {
+    text-align: end;
+}
+
+input, select {
+    border-style: none;
+    border-bottom-style: solid;
+    background-color: #FFD43B;
+    font-family: inherit;
+    font-size: 30px;
+}
+
+select, input[type='date'] {
+    font-size: 20px;
+}
+
+input:focus, select:focus {
+    outline: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+dialog::backdrop {
+    background-color: #403d39;
+    opacity: 0.5;
+}
+
+input[type='date'] {
+    background-color: #FFD43B;
+}
+
 
 .create {
     position: absolute;
     display: flex;
     flex-direction: column;
-    bottom: 110px;
-    right: 110px;
+    bottom: 115px;
+    right: 115px;
     border-radius: 10px;
     padding: 15px;
+    font-size: 2rem;
+    gap: 5px;
+    width: 100px;
+    background-color: #463f3a;
     visibility: hidden;
 }
 
-/*border style*/
+.create, .add-button {
+    box-shadow: 0px 5px 8px 3px #8e8279;
+}
+
+/*border style
 body, header, .side-bar, .project-container, .create {
     border-style: solid;
-}
+} */
