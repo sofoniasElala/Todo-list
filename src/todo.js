@@ -1,86 +1,85 @@
 export default class Task {
-    #name;
-    #description;
-    #notes;
-    #dueDate;
-    #priority;
-    #project;
-    #complete;
-    
-    constructor(name, description, dueDate, priority, project, complete = false){
-        this.#name = name;
-        this.#description = description;
-        this.#dueDate = dueDate;
-        this.#priority = priority;
-        this.#project = project;
-        this.#complete = complete;
-    }
+  #name;
+  #description;
+  #notes;
+  #dueDate;
+  #priority;
+  #project;
+  #complete;
 
-    set name(name){
-        this.#name = name;
-    }
+  constructor(name, description, dueDate, priority, project, complete = false) {
+    this.#name = name;
+    this.#description = description;
+    this.#dueDate = dueDate;
+    this.#priority = priority;
+    this.#project = project;
+    this.#complete = complete;
+  }
 
-    get name(){
-        return this.#name;
-    }
+  set name(name) {
+    this.#name = name;
+  }
 
-    set description(description){
-        this.#description = description;
-    }
+  get name() {
+    return this.#name;
+  }
 
-    get description(){
-        return this.#description;
-    }
+  set description(description) {
+    this.#description = description;
+  }
 
-    set notes(notes){
-        this.#notes = notes;
-    }
+  get description() {
+    return this.#description;
+  }
 
-    get notes(){
-        return this.#notes;
-    }
+  set notes(notes) {
+    this.#notes = notes;
+  }
 
-    set dueDate(dueDate){
-        this.#dueDate = dueDate;
-    }
+  get notes() {
+    return this.#notes;
+  }
 
-    get dueDate(){
-        return this.#dueDate;
-    }
+  set dueDate(dueDate) {
+    this.#dueDate = dueDate;
+  }
 
-    set priority(priority){
-        this.#priority = priority;
-    }
+  get dueDate() {
+    return this.#dueDate;
+  }
 
-    get priority(){
-        return this.#priority;
-    }
-    
-    set project(project){
-        this.#project = project;
-    }
+  set priority(priority) {
+    this.#priority = priority;
+  }
 
-    get project(){
-        return this.#project;
-    }
+  get priority() {
+    return this.#priority;
+  }
 
-    set complete(complete){
-        this.#complete = complete;
-    }
+  set project(project) {
+    this.#project = project;
+  }
 
-    get complete(){
-        return this.#complete;
-    }
+  get project() {
+    return this.#project;
+  }
 
-    toJSON(){
-       return  {
-            name: this.#name,
-            description: this.#description,
-            dueDate : this.#dueDate,
-            priority: this.#priority,
-            project: this.#project,
-            complete: this.#complete
+  set complete(complete) {
+    this.#complete = complete;
+  }
 
-        }
-    }
+  get complete() {
+    return this.#complete;
+  }
+
+  toJSON() {
+    return {
+      name: this.#name,
+      description: this.#description,
+      dueDate: this.#dueDate,
+      priority: this.#priority,
+      project: this.#project,
+      complete: this.#complete,
+    };
+  }
 }
