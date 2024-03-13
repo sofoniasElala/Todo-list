@@ -1,6 +1,8 @@
 import { todoCreator } from "./todoAndProjectCreatorDialogBox";
 import { deleteTask as deleteTaskFromStorage } from "./storageCRUD.js";
-import {format, parseISO, isPast} from 'date-fns';
+import {format, parseISO, isBefore} from 'date-fns';
+
+
 export default function taskDisplay(task, tasks){
     const main = document.querySelector('.main');
     const taskContainer = document.createElement('div');
@@ -10,10 +12,14 @@ export default function taskDisplay(task, tasks){
         const name = document.createElement('p');
         name.textContent = task.name;
         const dueDate = document.createElement('p');
-        dueDate.textContent = `⏲ ${format(parseISO(task.dueDate), "MMMM do" )}`;//task.description;
-        dueDate.style.color = isPast(parseISO(task.dueDate)) ? 'red' : 'green';
-        /*const edit = document.createElement('button');
-        edit.textContent = 'Edit'; */
+        dueDate.textContent = `⏲ ${format(parseISO(task.dueDate), "MMMM do" )}`;
+        dueDate.style.color = isBefore(task.dueDate, format(Date.now(), 'yyyy-MM-dd')) ? 'red' : 'green';
+
+        const project = document.createElement('p');
+        project.innerHTML = `<img src="e1a005fba6bca962a586.svg" alt="icon"> <span> ${task.project}</span>`;
+        project.classList.add('project-icon-task')
+        const priority = document.createElement('img');
+        priority.src = task.priority;
         taskContainer.addEventListener('click', ()=> {
             todoCreator(task);
         })
@@ -36,11 +42,13 @@ export default function taskDisplay(task, tasks){
         checkboxNname.classList.add('checkboxNname');
         checkboxNname.appendChild(completedBox);
         checkboxNname.appendChild(name);
+        checkboxNname.appendChild(priority);
 
         const info = document.createElement('div');
         info.classList.add('info');
         info.appendChild(dueDate);
         info.appendChild(deleteTask);
+        info.appendChild(project);
 
         taskContainer.appendChild(checkboxNname);
         //taskContainer.appendChild(dueDate);

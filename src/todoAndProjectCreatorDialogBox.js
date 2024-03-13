@@ -5,6 +5,10 @@ import { updateStorage, getValueFromStorage } from './storageCRUD.js';
 import Project from './project.js';
 import Task from './todo.js';
 import updateState from './updatePageState.js';
+import oneFlag from './priority-flags/one.svg';
+import twoFlag from './priority-flags/two.svg';
+import threeFlag from './priority-flags/three.svg';
+import fourFlag from './priority-flags/four.svg';
 
 function todoCreator(editTask = {}){
     const edit = editTask.name ? true : false;
@@ -37,6 +41,19 @@ function todoCreator(editTask = {}){
     dropDown.setAttribute('id', 'drop-down');
     createProjectsDropdown(dropDown, editTask.name ? true: false, editTask.project);
 
+    const priority = document.createElement('div');
+    priority.setAttribute('id', 'priority');
+    const priorityDropDown = document.createElement('select');
+    priorityDropDown.setAttribute('id', 'priority-drop-down');
+    let img = createPriorityDropdown(priorityDropDown, editTask.name ? true: false, editTask.priority);
+    priorityDropDown.addEventListener('change', ()=>{
+        img.src = priorityDropDown.value;
+    })
+    priority.appendChild(img);
+    priority.appendChild(priorityDropDown);
+    
+    //priority.appendChild(priorityDropDown);
+
 
     const bottomDiv = document.createElement('div');
     bottomDiv.classList.add('bottom-div');
@@ -51,8 +68,7 @@ function todoCreator(editTask = {}){
             name: name.value,
             description: description.value,
             dueDate: date.value,
-            notes: '',
-            priority: '',
+            priority: priorityDropDown.value,
             project: dropDown.value,
             complete: false
 
@@ -74,6 +90,7 @@ function todoCreator(editTask = {}){
     form.appendChild(description);
     form.appendChild(date);
     form.appendChild(dropDown);
+    form.appendChild(priority);
     bottomDiv.appendChild(cancel);
     bottomDiv.appendChild(add);
     form.appendChild(bottomDiv);
@@ -108,17 +125,11 @@ function projectCreator(editProject = {}){
     const bottomDiv = document.createElement('div');
     bottomDiv.classList.add('bottom-div');
 
-    const colorPicker = document.createElement('input');
-    colorPicker.setAttribute('type', 'color');
-    colorPicker.classList.add('color-picker');
-    colorPicker.setAttribute('value', '#0F931A');
-
     const add = document.createElement('button');
     add.classList.add('dialog-add');
     add.textContent = edit ? 'Save changes' : 'Add';
     add.setAttribute('type', 'submit');
     add.addEventListener('click', (e)=> {
-        e.preventDefault();
         document.querySelector('.create').style.visibility = 'hidden';
         createDataInStorage('project',{
             name: name.value,
@@ -138,7 +149,6 @@ function projectCreator(editProject = {}){
     form.appendChild(header);
     form.appendChild(nameLabel);
     form.appendChild(name);
-    bottomDiv.appendChild(colorPicker);
     bottomDiv.appendChild(cancel);
     bottomDiv.appendChild(add);
     form.appendChild(bottomDiv);
@@ -157,6 +167,31 @@ function createProjectsDropdown(dropdown, edit, prevOption){
         option.textContent = project.name;
         dropdown.appendChild(option);
     });
+}
+
+function createPriorityDropdown(dropdown, edit, prevOption){
+    const one = document.createElement('img');
+    one.src = oneFlag;
+    const two = document.createElement('img');
+    two.src = twoFlag;
+    const three = document.createElement('img');
+    three.src = threeFlag;
+    const four = document.createElement('img');
+    four.src = fourFlag;
+    let priorityImg = one;
+
+    const flags = [one, two, three, four];
+    flags.forEach((flag, index) => {
+        const option = document.createElement('option');
+        if(edit && (`${flag.src}` == prevOption)) {
+            option.setAttribute('selected', '');
+            priorityImg= flag;
+        }
+        option.setAttribute('value', `${flag.src}`);
+        option.textContent = `Priority ${index+1}`;
+        dropdown.appendChild(option); 
+    });
+    return priorityImg;
 }
 
 function createDataInStorage(type, data, edit, old){
@@ -199,7 +234,7 @@ function createDataInStorage(type, data, edit, old){
                  updateStorage('projects', projectsArray);
             });
         } else {
-        const task = new Task(data.name, data.description, data.notes, data.dueDate, 
+        const task = new Task(data.name, data.description, data.dueDate, 
             data.priority, data.project, data.complete);
         allTasksArray.push(task);
         

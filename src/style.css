@@ -66,7 +66,7 @@ header {
     margin-left: 16px;
 }
 
-.min-tab img, .project-icon{
+img{
     height: 17px;
 }
 
@@ -202,6 +202,7 @@ input[type='date'] {
     flex-direction: column;
     border-bottom-style: solid;
     align-items: start;
+    cursor: pointer;
 }
 
 .checkboxNname, .info {
@@ -210,16 +211,35 @@ input[type='date'] {
 }
 
 .checkboxNname > p {
-    margin-bottom: 0px;
+    margin: 0px 10px;
+}
+
+.checkboxNname img, .project-icon-task{
+    position: absolute;
+    right: 20px;
+}
+
+.project-icon-task {
+    display: flex;
+    gap: 5px;
+    bottom: 5px;
+}
+.checkboxNname p, .checkboxNname img {
+    font-size: 30px;
 }
 
 .info > p {
     margin: 0px;
-    font-size: 20px;
+    font-size: 17.5px;
 }
 .info {
     margin-left: 30px;
-    justify-content: end;
+    display: flex;
+    gap: 20px;
+}
+
+#priority {
+    display: flex;
 }
 
 input[type='checkbox']:checked + p {
@@ -241,7 +261,7 @@ input[type='checkbox']:checked::after {
     content: '✓';
     width: 2px;
     height: 2px;
-    top: 12px;
+    top: 4px;
 }
 
 .project-list {

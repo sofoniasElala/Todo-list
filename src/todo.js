@@ -7,10 +7,9 @@ export default class Task {
     #project;
     #complete;
     
-    constructor(name, description, notes, dueDate, priority, project, complete = false){
+    constructor(name, description, dueDate, priority, project, complete = false){
         this.#name = name;
         this.#description = description;
-        this.#notes = notes;
         this.#dueDate = dueDate;
         this.#priority = priority;
         this.#project = project;
@@ -77,7 +76,6 @@ export default class Task {
        return  {
             name: this.#name,
             description: this.#description,
-            notes: this.#notes,
             dueDate : this.#dueDate,
             priority: this.#priority,
             project: this.#project,
