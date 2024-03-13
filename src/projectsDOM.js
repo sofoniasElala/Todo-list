@@ -36,6 +36,10 @@ function projects(projects){
 }
 
 function projectTasks(project){
+    const main = document.querySelector('.main');
+    const header = document.createElement('h2');
+    header.textContent = project.name;
+    main.appendChild(header);
     const projectsArray = getValueFromStorage('projects');
     let projectToDisplay;
     projectsArray.forEach(p => {

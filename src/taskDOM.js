@@ -1,4 +1,4 @@
-import { todoCreator } from "./todoAndProjectCreatorDialogBox";
+import { todoCreator, createDataInStorage } from "./todoAndProjectCreatorDialogBox";
 import { deleteTask as deleteTaskFromStorage } from "./storageCRUD.js";
 import {format, parseISO, isBefore} from 'date-fns';
 
@@ -36,7 +36,12 @@ export default function taskDisplay(task, tasks){
         completedBox.setAttribute('type', 'checkbox');
         completedBox.setAttribute('id', `checkbox-${index}`);
         completedBox.classList.add('checkbox');
-        completedBox.onclick = (e) => e.stopPropagation();
+        if(task.complete) completedBox.setAttribute('checked', '');
+        completedBox.onclick = (e) => {
+            e.stopPropagation();
+            task.complete = task.complete ? false : true;
+            createDataInStorage('task', task, true, task);
+        }
 
         const checkboxNname = document.createElement('div');
         checkboxNname.classList.add('checkboxNname');
@@ -51,8 +56,6 @@ export default function taskDisplay(task, tasks){
         info.appendChild(project);
 
         taskContainer.appendChild(checkboxNname);
-        //taskContainer.appendChild(dueDate);
-        //taskContainer.appendChild(edit);
         taskContainer.appendChild(info);
 
         main.appendChild(taskContainer);

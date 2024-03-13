@@ -73,6 +73,7 @@ function todoCreator(editTask = {}){
             complete: false
 
         }, edit, editTask);
+        main.innerHTML = '';
         updateState();
 
     })
@@ -134,6 +135,7 @@ function projectCreator(editProject = {}){
         createDataInStorage('project',{
             name: name.value,
         }, edit, editProject);
+        main.innerHTML = '';
         updateState();
     })
 
@@ -250,4 +252,4 @@ function createDataInStorage(type, data, edit, old){
     }
 }
 
-export {todoCreator, projectCreator}
+export {todoCreator, projectCreator, createDataInStorage}
