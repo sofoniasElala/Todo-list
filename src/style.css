@@ -6,7 +6,7 @@ body {
     position: relative;
     display: grid;
     grid-template-columns: 325px 1fr; /* make it responsive* - use fractional*/
-    grid-template-rows: 60px 1fr;
+    grid-template-rows: 40px 1fr;
     margin: 0;
     font-size: 32px;
     font-family: teko;
@@ -17,6 +17,8 @@ body {
 header {
     grid-column: 1 / 3;
     grid-row: 1 / 2;
+    background-color: #FFD43B;
+    padding-left: 16px;
 }
 
 .side-bar {
@@ -34,7 +36,7 @@ header {
 
 }
 
-.create button, .side-bar button, .dialog-add, .dialog-cancel{
+.create button, .side-bar button, .dialog-add, .dialog-cancel, .project-container button, .task-container button{
     font-size: 1rem;
     color: #FFFFFF;
     border-style: none;
@@ -54,13 +56,17 @@ header {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     background-color: #f2e9e4;
+    padding: 15px 0px 15px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.min-tab {
+.min-tab, .project-list {
     margin-left: 16px;
 }
 
-.min-tab img{
+.min-tab img, .project-icon{
     height: 17px;
 }
 
@@ -83,7 +89,7 @@ header {
     background-color: #b2a69d;
 }
 
-.side-bar button:hover {
+.side-bar button:hover, .side-bar button:focus {
     background-color: #86817d;
 }
 
@@ -106,24 +112,40 @@ form p {
     margin: 0 0 15px;
 }
 
+.project-container p, .task-container p {
+    margin: 10px;
+}
+
 .bottom-div {
     text-align: end;
 }
 
-input, select {
+input, select, textarea {
     border-style: none;
     border-bottom-style: solid;
     background-color: #FFD43B;
     font-family: inherit;
     font-size: 30px;
+    color: #463f3a;
 }
 
-select, input[type='date'] {
+select, input[type='date'], textarea {
     font-size: 20px;
 }
 
-input:focus, select:focus {
+.color-picker {
+    border-style: none;
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+}
+
+input:focus, select:focus, textarea:focus {
     outline: none;
+}
+
+textarea {
+    resize: none;
 }
 
 form {
@@ -160,6 +182,78 @@ input[type='date'] {
 .create, .add-button {
     box-shadow: 0px 5px 8px 3px #8e8279;
 }
+
+.project-container {
+    border-style: none;
+    display: flex;
+    border-radius: 20px 0 0 20px;
+    background-color: #edd787;
+    cursor: pointer;
+}
+
+.project-container:hover{
+    border-color: #463f3a;
+    border-style: double;
+}
+
+.task-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-bottom-style: solid;
+    align-items: start;
+}
+
+.checkboxNname, .info {
+    display: flex;
+    align-items: center;
+}
+
+.checkboxNname > p {
+    margin-bottom: 0px;
+}
+
+.info > p {
+    margin: 0px;
+    font-size: 20px;
+}
+.info {
+    margin-left: 30px;
+    justify-content: end;
+}
+
+input[type='checkbox']:checked + p {
+    text-decoration: line-through;
+}
+
+input[type='checkbox'] {
+    border-radius: 4px;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-style: solid;
+    border-width: 1.5px;
+    cursor: pointer;
+}
+
+input[type='checkbox']:checked::after {
+    position: absolute;
+    content: '✓';
+    width: 2px;
+    height: 2px;
+    top: 12px;
+}
+
+.project-list {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.project-icon {
+    margin-bottom: 5px;
+}
+
 
 /*border style
 body, header, .side-bar, .project-container, .create {

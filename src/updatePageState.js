@@ -1,7 +1,7 @@
 import home from "./homeDOM.js";
 import { today, week } from "./calendarDOM.js";
 import { projects, projectTasks } from "./projectsDOM.js";
-import { getValueFromStorage } from "./storageCRUD.js";
+import { getValueFromStorage, getProjectFromStorage } from "./storageCRUD.js";
 
 export default function updateState(){
     switch (getValueFromStorage('current-page')) {
@@ -18,7 +18,7 @@ export default function updateState(){
             projects(getValueFromStorage('projects'));
             break;
         default:
-            projectTasks(getValueFromStorage('current-page'));
+            projectTasks(getProjectFromStorage(getValueFromStorage('current-page')));
             break;
     }
 }

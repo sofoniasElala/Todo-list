@@ -20,16 +20,18 @@ function todoCreator(editTask = {}){
     name.value = editTask.name ? editTask.name : '';
     name.setAttribute('placeholder', 'Task name');
     name.setAttribute('autocapitalize', 'on');
-    const description = document.createElement('input');
-    description.value = editTask.description ? editTask.description : '';
+    const description = document.createElement('textarea');
+    description.textContent = editTask.description ? editTask.description : '';
     description.setAttribute('placeholder', 'Description');
     description.setAttribute('autocapitalize', 'on');
+    description.setAttribute('rows', '5');
+    description.setAttribute('cols', '33');
 
     const date = document.createElement('input');
     date.setAttribute('type', 'date');
     date.classList.add('dueDate');
     date.setAttribute('value', editTask.dueDate? editTask.dueDate : format(Date.now(), 'yyyy-MM-dd'));
-    date.setAttribute('min', editTask.dueDate? format(new Date(editTask.dueDate), 'yyyy-MM-dd'): format(Date.now(), 'yyyy-MM-dd'));
+    date.setAttribute('min', format(Date.now(), 'yyyy-MM-dd'));
 
     const dropDown = document.createElement('select');
     dropDown.setAttribute('id', 'drop-down');
@@ -40,10 +42,10 @@ function todoCreator(editTask = {}){
     bottomDiv.classList.add('bottom-div');
     const add = document.createElement('button');
     add.classList.add('dialog-add');
-    add.textContent = editTask.name ? 'Save task' : 'Add task';
+    add.textContent = editTask.name ? 'Save changes' : 'Add task';
     add.setAttribute('type', 'submit');
     add.addEventListener('click', (e)=> {
-        e.preventDefault();
+        
         document.querySelector('.create').style.visibility = 'hidden';
         createDataInStorage('task',{
             name: name.value,
@@ -92,22 +94,28 @@ function projectCreator(editProject = {}){
     form.setAttribute('method', 'dialog');
 
     const header = document.createElement('p');
-    header.textContent = 'Add project';
+    header.textContent = edit ? 'Project' : 'Add project';
     
     const nameLabel = document.createElement('label');
     nameLabel.textContent = 'Name';
     nameLabel.setAttribute('for', 'project-name');
 
     const name = document.createElement('input');
-    name.value = editProject.name ? editProject.name : '';
+    name.value = edit ? editProject.name : '';
     name.setAttribute('id', 'project-name');
     name.setAttribute('autocapitalize', 'on');
 
     const bottomDiv = document.createElement('div');
     bottomDiv.classList.add('bottom-div');
+
+    const colorPicker = document.createElement('input');
+    colorPicker.setAttribute('type', 'color');
+    colorPicker.classList.add('color-picker');
+    colorPicker.setAttribute('value', '#0F931A');
+
     const add = document.createElement('button');
     add.classList.add('dialog-add');
-    add.textContent = editProject.name ? 'Save project' : 'Add project';
+    add.textContent = edit ? 'Save changes' : 'Add';
     add.setAttribute('type', 'submit');
     add.addEventListener('click', (e)=> {
         e.preventDefault();
@@ -130,6 +138,7 @@ function projectCreator(editProject = {}){
     form.appendChild(header);
     form.appendChild(nameLabel);
     form.appendChild(name);
+    bottomDiv.appendChild(colorPicker);
     bottomDiv.appendChild(cancel);
     bottomDiv.appendChild(add);
     form.appendChild(bottomDiv);
