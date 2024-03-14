@@ -24,6 +24,7 @@ function getProjectFromStorage(name) {
 
 function deleteProject(projectToDelete) {
   const projectsArray = getValueFromStorage("projects");
+  const projectTasks = projectToDelete.tasks;
   const onDOM = Array.from(
     document.getElementsByClassName(
       `${projectToDelete.name.replace(/\s/g, "")}`
@@ -38,9 +39,13 @@ function deleteProject(projectToDelete) {
       });
     }
   });
+
+  projectTasks.forEach((task) => {
+    deleteFromAllTasks(task, onDOM);
+  });
 }
 
-function deleteTask(taskToDelete, allTasks) {
+function deleteTask(taskToDelete) {
   const project = getProjectFromStorage(taskToDelete.project);
   const allProjects = getValueFromStorage("projects");
   const onDOM = Array.from(
@@ -55,6 +60,19 @@ function deleteTask(taskToDelete, allTasks) {
     }
   });
 
+  deleteFromAllTasks(taskToDelete, onDOM);
+
+  allProjects.forEach((proj, index) => {
+    if (proj.name === project.name) {
+      allProjects.splice(index, 1, project);
+      updateStorage("projects", allProjects);
+      return;
+    }
+  });
+}
+
+function deleteFromAllTasks(taskToDelete, onDOM) {
+  const allTasks = getValueFromStorage("all-tasks");
   allTasks.forEach((task, index) => {
     if (task.name === taskToDelete.name) {
       allTasks.splice(index, 1);
@@ -62,14 +80,6 @@ function deleteTask(taskToDelete, allTasks) {
       onDOM.forEach((element) => {
         element.remove();
       });
-      return;
-    }
-  });
-
-  allProjects.forEach((proj, index) => {
-    if (proj.name === project.name) {
-      allProjects.splice(index, 1, project);
-      updateStorage("projects", allProjects);
       return;
     }
   });

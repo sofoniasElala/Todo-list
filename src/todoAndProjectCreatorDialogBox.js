@@ -242,14 +242,15 @@ function createDataInStorage(type, data, edit, old) {
           data.tasks = project.tasks;
           projectsArray.splice(index, 1, data);
           projectToTab = data;
+          projectTab(projectToTab, old.name);
         }
       });
     } else {
       projectToTab = new Project(data.name, []);
       projectsArray.push(projectToTab);
+      projectTab(projectToTab);
     }
     updateStorage("projects", projectsArray);
-    projectTab(projectToTab);
   } else if (type === "task") {
     const allTasksArray = getValueFromStorage("all-tasks");
     if (edit) {

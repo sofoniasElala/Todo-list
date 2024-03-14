@@ -33,7 +33,7 @@ export default function taskDisplay(task, tasks) {
   deleteTask.textContent = "delete";
   deleteTask.addEventListener("click", (e) => {
     e.stopPropagation();
-    deleteTaskFromStorage(task, tasks);
+    deleteTaskFromStorage(task);
   });
   const labelForBox = document.createElement("label");
   labelForBox.setAttribute("for", `checkbox-${index}`);

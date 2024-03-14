@@ -63,7 +63,8 @@ function projectTasks(project) {
 }
 
 //display the given project under the projects tab
-function projectTab(project) {
+function projectTab(project, oldProjectTab = '') {
+  if (oldProjectTab !== '') document.querySelector(`.side-bar .${oldProjectTab}`).remove();
   const sideBar = document.querySelector(".side-bar");
   const main = document.querySelector(".main");
   const projectButton = document.createElement("button");

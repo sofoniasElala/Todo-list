@@ -30,6 +30,7 @@ header {
 }
 
 .side-bar {
+  position: relative;
   background-color: #463f3a;
   grid-column: 1 / 2;
   grid-row: 2 / 3;
@@ -300,4 +301,13 @@ input[type="checkbox"]:checked::after {
 
 .project-icon {
   margin-bottom: 5px;
+}
+
+footer {
+    position: absolute;
+    color: #ffd43b;
+    font-size: 20px;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
