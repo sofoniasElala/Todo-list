@@ -1,6 +1,7 @@
 import { getValueFromStorage } from "./storageCRUD.js";
 import taskDisplay from "./taskDOM.js";
 
+//landing page - display all tasks
 export default function home(allTasks = getValueFromStorage("all-tasks")) {
   const main = document.querySelector(".main");
   main.innerHTML = "";

@@ -5,13 +5,21 @@
 body {
   position: relative;
   display: grid;
-  grid-template-columns: 325px 1fr; /* make it responsive* - use fractional*/
+  grid-template-columns: minmax(180px, 325px) minmax(480px, 1fr); 
   grid-template-rows: 40px 1fr;
   margin: 0;
   font-size: 32px;
   font-family: teko;
   height: 100vh;
-  width: calc(1440px); 
+}
+
+.side-bar,
+.main,
+form,
+.create,
+.task-container {
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -25,8 +33,6 @@ header {
   background-color: #463f3a;
   grid-column: 1 / 2;
   grid-row: 2 / 3;
-  display: flex;
-  flex-direction: column;
   gap: 5px;
   padding: 10px 5px;
 }
@@ -66,9 +72,8 @@ header {
   grid-row: 2 / 3;
   background-color: #f2e9e4;
   padding: 15px 0px 15px 25px;
-  display: flex;
-  flex-direction: column;
   gap: 10px;
+  overflow: scroll;
 }
 
 .min-tab,
@@ -85,7 +90,7 @@ img {
   background-size: 35px;
   position: absolute;
   bottom: 80px;
-  right: 80px;
+  right: 5%;
   border-radius: 50%;
   background-position: center;
   height: 55px;
@@ -167,8 +172,6 @@ textarea {
 }
 
 form {
-  display: flex;
-  flex-direction: column;
   gap: 8px;
 }
 
@@ -191,8 +194,6 @@ select {
 
 .create {
   position: absolute;
-  display: flex;
-  flex-direction: column;
   bottom: 115px;
   right: 115px;
   border-radius: 10px;
@@ -224,8 +225,6 @@ select {
 
 .task-container {
   position: relative;
-  display: flex;
-  flex-direction: column;
   border-bottom-style: solid;
   align-items: start;
   cursor: pointer;

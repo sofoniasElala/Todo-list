@@ -20,6 +20,7 @@ class App {
     this.allProjects = [{ name: "default project", tasks: [] }];
     this.allTasks = [];
 
+    //initialize storage
     updateStorage("projects", this.allProjects);
     updateStorage("all-tasks", this.allTasks);
     updateStorage("current-page", "home");

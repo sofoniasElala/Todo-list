@@ -5,6 +5,8 @@ import {
 import { deleteTask as deleteTaskFromStorage } from "./storageCRUD.js";
 import { format, parseISO, isBefore } from "date-fns";
 
+
+//display the given task with limited info and with the ability to edit/delete
 export default function taskDisplay(task, tasks) {
   const main = document.querySelector(".main");
   const taskContainer = document.createElement("div");
@@ -32,7 +34,6 @@ export default function taskDisplay(task, tasks) {
   deleteTask.addEventListener("click", (e) => {
     e.stopPropagation();
     deleteTaskFromStorage(task, tasks);
-    console.log("clicked");
   });
   const labelForBox = document.createElement("label");
   labelForBox.setAttribute("for", `checkbox-${index}`);

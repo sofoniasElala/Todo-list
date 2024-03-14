@@ -1,4 +1,3 @@
-//REFACTOR!!!
 import { format } from "date-fns";
 import { projectTab } from "./projectsDOM.js";
 import { updateStorage, getValueFromStorage } from "./storageCRUD.js";
@@ -10,6 +9,8 @@ import twoFlag from "./priority-flags/two.svg";
 import threeFlag from "./priority-flags/three.svg";
 import fourFlag from "./priority-flags/four.svg";
 
+
+//display a dialog box for user to create a task with details
 function todoCreator(editTask = {}) {
   const edit = editTask.name ? true : false;
   const main = document.querySelector(".main");
@@ -97,20 +98,18 @@ function todoCreator(editTask = {}) {
     dialog.close();
   });
 
-  form.appendChild(name);
-  form.appendChild(description);
-  form.appendChild(date);
-  form.appendChild(dropDown);
-  form.appendChild(priority);
-  bottomDiv.appendChild(cancel);
-  bottomDiv.appendChild(add);
-  form.appendChild(bottomDiv);
-  dialog.appendChild(form);
-  main.appendChild(dialog);
-
-  dialog.showModal();
+  addToDOM(
+    form,
+    [name, description, date, dropDown, priority],
+    bottomDiv,
+    [cancel, add],
+    dialog,
+    main
+  );
 }
 
+
+//display a dialog box for user to create a project
 function projectCreator(editProject = {}) {
   const edit = editProject.name ? true : false;
   const main = document.querySelector(".main");
@@ -163,18 +162,18 @@ function projectCreator(editProject = {}) {
     dialog.close();
   });
 
-  form.appendChild(header);
-  form.appendChild(nameLabel);
-  form.appendChild(name);
-  bottomDiv.appendChild(cancel);
-  bottomDiv.appendChild(add);
-  form.appendChild(bottomDiv);
-  dialog.appendChild(form);
-  main.appendChild(dialog);
-
-  dialog.showModal();
+  addToDOM(
+    form,
+    [header, nameLabel, name],
+    bottomDiv,
+    [cancel, add],
+    dialog,
+    main
+  );
 }
 
+
+//create a drop down that displays the available projects to put the task in
 function createProjectsDropdown(dropdown, edit, prevOption) {
   const projects = getValueFromStorage("projects");
   projects.forEach((project) => {
@@ -186,6 +185,7 @@ function createProjectsDropdown(dropdown, edit, prevOption) {
   });
 }
 
+//create a drop down that displays priority levels for tasks
 function createPriorityDropdown(dropdown, edit, prevOption) {
   const one = document.createElement("img");
   one.src = oneFlag;
@@ -211,6 +211,27 @@ function createPriorityDropdown(dropdown, edit, prevOption) {
   return priorityImg;
 }
 
+function addToDOM(
+  form,
+  formChildren,
+  bottomDiv,
+  bottomDivChildren,
+  dialog,
+  main
+) {
+  formChildren.forEach((child) => {
+    form.appendChild(child);
+  });
+  bottomDivChildren.forEach((child) => {
+    bottomDiv.appendChild(child);
+  });
+  form.appendChild(bottomDiv);
+  dialog.appendChild(form);
+  main.appendChild(dialog);
+  dialog.showModal();
+}
+
+//although its 'create...', this function also updates an existing task/project
 function createDataInStorage(type, data, edit, old) {
   const projectsArray = getValueFromStorage("projects");
   let projectToTab;

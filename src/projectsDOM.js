@@ -6,6 +6,8 @@ import {
 } from "./storageCRUD.js";
 import { projectCreator } from "./todoAndProjectCreatorDialogBox.js";
 
+
+//display the given project with the ability to edit/delete
 function projects(projects) {
   const main = document.querySelector(".main");
   main.innerHTML = "";
@@ -40,6 +42,7 @@ function projects(projects) {
   });
 }
 
+//display all tasks of the given project
 function projectTasks(project) {
   const main = document.querySelector(".main");
   const header = document.createElement("h2");
@@ -59,11 +62,12 @@ function projectTasks(project) {
   });
 }
 
+//display the given project under the projects tab
 function projectTab(project) {
   const sideBar = document.querySelector(".side-bar");
   const main = document.querySelector(".main");
   const projectButton = document.createElement("button");
-  projectButton.classList.add(`${project.name}`);
+  projectButton.classList.add(`${project.name.replace(/\s/g, "")}`);
   projectButton.classList.add("project-list");
   projectButton.innerHTML = `<img class="project-icon" src="e1a005fba6bca962a586.svg" alt="icon"> <span>${project.name}</span>`;
 

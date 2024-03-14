@@ -1,6 +1,7 @@
 import { isToday, isThisWeek, parseISO } from "date-fns";
 import taskDisplay from "./taskDOM.js";
 
+//display all tasks that are due today
 function today(tasks) {
   const main = document.querySelector(".main");
   main.innerHTML = "";
@@ -12,6 +13,7 @@ function today(tasks) {
   });
 }
 
+//display all tasks that are due this week
 function week(tasks) {
   const main = document.querySelector(".main");
   main.innerHTML = "";
