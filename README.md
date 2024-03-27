@@ -9,7 +9,8 @@ My Todo List is a web app to help users organize their tasks. Built with JavaScr
 2. ### User-Friendly Interface:
       * The interface is intuitive and easy to use, focusing on essential task management features.
 
-![thumbnail](https://github.com/sofoniasElala/Todo-list/blob/main/src/mytodolist-Screenshot.png)
+![thumbnail](https://github.com/sofoniasElala/Todo-list/blob/main/src/mytodolist-screenshot.png)
+![thumbnail-2](https://github.com/sofoniasElala/Todo-list/blob/main/src/mytodolist-screenshot2.png)
 
 ## Technologies Used:
 
